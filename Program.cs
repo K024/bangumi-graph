@@ -13,7 +13,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 builder.Services
     .AddDbContext<AppDbContext>(options =>
-        options.UseNpgsql(builder.Configuration.GetConnectionString("AppDb")));
+    {
+        options.UseNpgsql(
+            builder.Configuration.GetConnectionString("AppDb"),
+            opts => opts.UseQuerySplittingBehavior(
+                builder.Configuration.GetValue<bool>("UseSingleQuery")
+                    ? QuerySplittingBehavior.SingleQuery
+                    : QuerySplittingBehavior.SplitQuery));
+    });
 
 builder.Services
     .AddGraphQLServer()
@@ -27,8 +34,8 @@ builder.Services
     {
         opt.IncludeExceptionDetails = builder.Environment.IsDevelopment();
         opt.Complexity.Enable = true;
-        opt.Complexity.MaximumAllowed = 3000;
         opt.Complexity.ApplyDefaults = true;
+        opt.Complexity.MaximumAllowed = 5000;
         opt.Complexity.Calculation = ctx => (ctx.Complexity + 1) * (ctx.ChildComplexity + 1);
     });
 
