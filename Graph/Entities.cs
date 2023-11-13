@@ -95,6 +95,10 @@ public class Subject
 
     [UseFiltering]
     [UseSorting]
+    public IList<Person_Character> person_characters { get; set; } = null!;
+
+    [UseFiltering]
+    [UseSorting]
     public IList<Subject_Person> subject_persons { get; set; } = null!;
 
     [UseFiltering]

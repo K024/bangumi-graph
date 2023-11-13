@@ -35,8 +35,7 @@ builder.Services
         opt.IncludeExceptionDetails = builder.Environment.IsDevelopment();
         opt.Complexity.Enable = true;
         opt.Complexity.ApplyDefaults = true;
-        opt.Complexity.MaximumAllowed = 5000;
-        opt.Complexity.Calculation = ctx => (ctx.Complexity + 1) * (ctx.ChildComplexity + 1);
+        opt.Complexity.MaximumAllowed = 1500;
     });
 
 

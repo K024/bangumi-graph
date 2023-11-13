@@ -19,3 +19,8 @@ GraphQL 直接翻译 SQL 查询：
 
 ![query 3](static/query-3.jpg)
 ![execution 3](static/execution-3.jpg)
+
+查询协作作品：
+
+![query 4](static/query-4.jpg)
+![execution 4](static/execution-4.jpg)
